@@ -9,25 +9,21 @@
 //    * Divide the result by 2.
 
 // 3. Output:
-//    * area: the area of the triangle.
+//    * area of triangle: the result of the computation.
 
 const readline = require('readline');
 
 const rl = readline.createInterface(process.stdin, process.stdout);
 
 function areaOfTriangle(base, height) {
-    return (base * height) / 2;
+    const area = (base * height) / 2;
+    return area;
 }
 
 rl.question('Enter the base of the triangle: ', (base) => {
     rl.question('Enter the height of the triangle: ', (height) => {
-        const area = areaOfTriangle(base, height);
-        console.log(`The area of the triangle is ${area} square units.`);
+        const result = areaOfTriangle(base, height);
+        console.log(`The area of the triangle is ${result} square units.`);
         rl.close();
     })
-})
-
-// const base = 10;
-// const height = 5;
-// const area = areaOfTriangle(base, height);
-// console.log(area); // 25
+});
