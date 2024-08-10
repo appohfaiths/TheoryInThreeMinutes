@@ -1,18 +1,43 @@
 ﻿using Algorithms;
-using System;
+using DataStructures;
 
 class Program
 {
     static void Main()
     {
-        Console.Write("Enter the base of the triangle: ");
-        double baseValue = Convert.ToDouble(Console.ReadLine());
+        List<Student> students = [];
 
-        Console.Write("Enter the height of the triangle: ");
-        double height = Convert.ToDouble(Console.ReadLine());
+        for (int i = 0; i < 3; i++)
+        {
+            Console.WriteLine($"Enter the name of student {i + 1}");
+            string? name = Console.ReadLine();
 
-        double area = Algorithms_Class.CalculateAreaOfTriangle(baseValue, height);
+            if(string.IsNullOrEmpty(name))
+            {
+                Console.WriteLine("Invalid input");
+                i--;
+                continue;
+            }
 
-        Console.WriteLine($"The area of the triangle is {area}");
+            Console.WriteLine($"Enter the marks of student {i + 1}");
+            string? marksInput = Console.ReadLine();
+
+            if (!double.TryParse(marksInput, out double marks))
+            {
+                Console.WriteLine("Invalid input");
+                i--;
+                continue;
+            }
+
+            students.Add(new Student { Name = name, Marks = marks });
+        }
+
+        students = [.. students.OrderByDescending(s => s.Marks)];
+
+        Console.WriteLine("Sorted list of students in descending order of marks:");
+        foreach (var student in students)
+        {
+            Console.WriteLine($"{student.Name}: {student.Marks}");
+        }
     }
 }
